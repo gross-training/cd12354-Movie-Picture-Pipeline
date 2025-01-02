@@ -51,7 +51,9 @@ jobs:
       run: pip install pipenv
 
     - name: Run the tests
-      run: pipenv run test
+      run: |
+        pip install pytest
+        pytest
   
   build:
     needs: [test, lint]

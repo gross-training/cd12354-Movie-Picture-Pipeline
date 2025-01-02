@@ -69,28 +69,20 @@ jobs:
     - name: Run the tests
       run: npm test
   
- # build:
- #   needs: [test, lint]
- #   runs-on: ubuntu-latest
+  build:
+    needs: [test, lint]
+    runs-on: ubuntu-latest
 
- #  steps:
- #   - name: Check out the code from the repository. 
- #     uses: actions/checkout@v4
+    steps:
+    - name: Check out the code from the repository. 
+      uses: actions/checkout@v4
 
- #   - name: Set up a Node.js environment using the specified node version and cache dependencies
-#      uses: actions/setup-node@v3
- #     with:
- #       node-version: ${{ env.NODE_VER }}
- #       cache: 'npm'
- #       cache-dependency-path: './starter/frontend/package-lock.json'
-#
- #   - name: Cache NPM dependencies
-  #    uses: actions/cache@v3
-  #    with:
-  #      path: ~/.npm
-  #      key: ${{ runner.OS }}-npm-cache-${{ hashFiles('**/package-lock.json') }}
-  #      restore-keys: |
-  #        ${{ runner.OS }}-npm-cache-
-#
-#    - name: Run the linter.
-#      run: npm test
+    - name: Set up a Node.js environment using the specified node version and cache dependencies
+      uses: actions/setup-node@v3
+      with:
+      node-version: ${{ env.NODE_VER }}
+        cache: 'npm'
+        cache-dependency-path: './starter/frontend/package-lock.json'
+        
+    - name: Run the linter.
+      run: npm test

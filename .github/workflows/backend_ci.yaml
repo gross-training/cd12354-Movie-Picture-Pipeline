@@ -28,10 +28,18 @@ jobs:
       with:
         python-version: ${{ env.PYTHON_VER }}
 
-    - name: Install the dependencies.
-      run: pip install pipenv
+    - name: Cache depndencies
+      use: actions/cache@v3
+        with:
+          path: ./setup/backend
+          key: ${{ runner.os }}-pipenv-${{ hashFiles('**/Pipfile.lock') }}
 
-    - name: Run the linter.
+      - name: Install dependencies
+        if: steps.cache-pipenv.outputs.cache-hit != 'true'
+        run: |
+          pipenv install --deploy --dev
+
+      - name: Run the linter.
       run: pipenv run lint
 
   

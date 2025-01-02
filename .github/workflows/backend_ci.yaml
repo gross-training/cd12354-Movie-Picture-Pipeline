@@ -13,7 +13,7 @@ defaults:
     working-directory: ./starter/backend
 
 env:
-  NODE_VER: '18.14'
+  PYTHON_VER: '3.10.6'
 
 jobs:
   lint:
@@ -23,10 +23,10 @@ jobs:
     - name: Check out the code from the repository. 
       uses: actions/checkout@v3
 
-    - name: Set up a Node.js environment using the specified node version 
-      uses: actions/setup-node@v3
+    - name: Set up a python environment using the specified version 
+      uses: actions/setup-python@v5
       with:
-        node-version: ${{ env.NODE_VER }}
+        python-version: ${{ env.PYTHON_VER }}
 
     - name: Install the dependencies.
       run: pipenv install
@@ -42,10 +42,10 @@ jobs:
     - name: Check out the code from the repository. 
       uses: actions/checkout@v4
 
-    - name: Set up a Node.js environment using the specified node version and cache dependencies
-      uses: actions/setup-node@v3
+    - name: Set up a python environment using the specified version
+      uses: actions/setup-python@v5
       with:
-         node-version: ${{ env.NODE_VER }}
+         python-version: ${{ env.PYTHON_VER }}
 
     - name: Install the dependencies.
       run: pipenv install
@@ -61,10 +61,10 @@ jobs:
     - name: Check out the code from the repository. 
       uses: actions/checkout@v4
 
-    - name: Set up a Node.js environment using the specified node version and cache dependencies
-      uses: actions/setup-node@v3
+    - name: Set up a python environment using the specified version
+      uses: actions/setup-python@v5
       with:
-        node-version: ${{ env.NODE_VER }}
+        python-version: ${{ env.PYTHON_VER }}
 
     - name: Install the dependencies.
       run: pipenv install

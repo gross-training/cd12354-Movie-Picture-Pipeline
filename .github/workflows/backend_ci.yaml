@@ -79,9 +79,7 @@ jobs:
           pipenv install --deploy --dev
 
     - name: Run the tests
-      run: |
-          pip install pytest
-          pytest
+      run: pipenv run test
   
   build:
     needs: [test, lint]

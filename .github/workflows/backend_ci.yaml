@@ -32,16 +32,9 @@ jobs:
        run: pip install pipenv
 
     - id: cache-pipenv
-      uses: actions/cache@v3
-      with:
-        path: ~/.cache/pip
-        key: ${{ runner.OS }}-pip-cache-${{ hashFiles('**/pipfile.lock') }}
-        restore-keys: |
-          ${{ runner.OS }}-pip-cache-
 
     - name: Install dependencies
-      if: steps.cache-pipenv.outputs.cache-hit != 'true'
-      run: pipenv install --deploy --dev
+      run: pipenv install --dev
 
     - name: Run the linter.
       run: pipenv run lint
@@ -64,15 +57,9 @@ jobs:
 
     - id: cache-pipenv
       uses: actions/cache@v3
-      with:
-         path: ~/.cache/pip
-         key: ${{ runner.OS }}-pip-cache-${{ hashFiles('**/pipfile.lock') }}
-         restore-keys: |
-          ${{ runner.OS }}-pip-cache-
 
     - name: Install dependencies
-      if: steps.cache-pipenv.outputs.cache-hit != 'true'
-      run: pipenv install --deploy --dev
+      run: pipenv install --dev
 
     - name: Run the tests
       run: pipenv run test
@@ -93,17 +80,8 @@ jobs:
     - name: Install pipenv
       run: pip install pipenv
 
-    - id: cache-pipenv
-      uses: actions/cache@v3
-      with:
-         path: ~/.cache/pip
-         key: ${{ runner.OS }}-pip-cache-${{ hashFiles('**/pipfile.lock') }}
-         restore-keys: |
-          ${{ runner.OS }}-pip-cache-
-
     - name: Install dependencies
-      if: steps.cache-pipenv.outputs.cache-hit != 'true'
-      run: pipenv install --deploy --dev
+      run: pipenv install --dev
 
     - name: Run the tests
       run: pipenv run test

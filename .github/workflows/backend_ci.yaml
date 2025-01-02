@@ -36,7 +36,7 @@ jobs:
       uses: actions/cache@v3
       with:
         path: ~/.pip
-        key: ${{ runner.OS }}-pip-cache-${{ hashFiles('**/package-lock.json') }}
+        key: ${{ runner.OS }}-pip-cache-${{ hashFiles('**/pipfile.lock') }}
         restore-keys: |
           ${{ runner.OS }}-pip-cache-
 
@@ -69,7 +69,7 @@ jobs:
       uses: actions/cache@v3
       with:
          path: ~/.pip
-         key: ${{ runner.OS }}-pip-cache-${{ hashFiles('**/package-lock.json') }}
+         key: ${{ runner.OS }}-pip-cache-${{ hashFiles('**/pipfile.lock') }}
          restore-keys: |
           ${{ runner.OS }}-pip-cache-
 

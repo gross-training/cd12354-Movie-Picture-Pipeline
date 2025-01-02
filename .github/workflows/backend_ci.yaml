@@ -30,9 +30,7 @@ jobs:
 
     -  name: Install pipenv
        run: pip install pipenv
-
-    - id: cache-pipenv
-
+       
     - name: Install dependencies
       run: pipenv install --dev
 
@@ -54,9 +52,6 @@ jobs:
     
     -  name: Install pipenv
        run:  pip install pipenv
-
-    - id: cache-pipenv
-      uses: actions/cache@v3
 
     - name: Install dependencies
       run: pipenv install --dev

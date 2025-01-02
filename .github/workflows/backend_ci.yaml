@@ -28,11 +28,13 @@ jobs:
       with:
         python-version: ${{ env.PYTHON_VER }}
 
-    - name: Cache depndencies
-      use: actions/cache@v3
-        with:
-          path: ./setup/backend
-          key: ${{ runner.os }}-pipenv-${{ hashFiles('**/Pipfile.lock') }}
+      - id: cache-pipenv
+      uses: actions/cache@v3
+      with:
+        path: ~/.pip
+        key: ${{ runner.OS }}-pip-cache-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.OS }}-pip-cache-
 
       - name: Install dependencies
         if: steps.cache-pipenv.outputs.cache-hit != 'true'

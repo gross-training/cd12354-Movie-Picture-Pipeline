@@ -80,7 +80,7 @@ jobs:
     - name: Set up a Node.js environment using the specified node version and cache dependencies
       uses: actions/setup-node@v3
       with:
-      node-version: ${{ env.NODE_VER }}
+        node-version: ${{ env.NODE_VER }}
         cache: 'npm'
         cache-dependency-path: './starter/frontend/package-lock.json'
         

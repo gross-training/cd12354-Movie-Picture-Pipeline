@@ -38,8 +38,8 @@ jobs:
 
     - name: Install dependencies
       if: steps.cache-pipenv.outputs.cache-hit != 'true'
-        run: |
-          pipenv install --deploy --dev
+      run: |
+        pipenv install --deploy --dev
 
     - name: Run the linter.
       run: pipenv run lint
@@ -55,7 +55,7 @@ jobs:
     - name: Set up a python environment using the specified version
       uses: actions/setup-python@v5
       with:
-         python-version: ${{ env.PYTHON_VER }}
+        python-version: ${{ env.PYTHON_VER }}
 
      - id: cache-pipenv
        uses: actions/cache@v3

@@ -34,7 +34,7 @@ jobs:
     - id: cache-pipenv
       uses: actions/cache@v3
       with:
-        path: ~/.pip
+        path: ~/.cache/pip
         key: ${{ runner.OS }}-pip-cache-${{ hashFiles('**/pipfile.lock') }}
         restore-keys: |
           ${{ runner.OS }}-pip-cache-
@@ -65,7 +65,7 @@ jobs:
     - id: cache-pipenv
       uses: actions/cache@v3
       with:
-         path: ~/.pip
+         path: ~/.cache/pip
          key: ${{ runner.OS }}-pip-cache-${{ hashFiles('**/pipfile.lock') }}
          restore-keys: |
           ${{ runner.OS }}-pip-cache-
@@ -96,7 +96,7 @@ jobs:
     - id: cache-pipenv
       uses: actions/cache@v3
       with:
-         path: ~/.pip
+         path: ~/.cache/pip
          key: ${{ runner.OS }}-pip-cache-${{ hashFiles('**/pipfile.lock') }}
          restore-keys: |
           ${{ runner.OS }}-pip-cache-

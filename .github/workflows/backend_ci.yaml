@@ -57,8 +57,18 @@ jobs:
       with:
          python-version: ${{ env.PYTHON_VER }}
 
-    - name: Install the dependencies.
-      run: pip install pipenv
+     - id: cache-pipenv
+      uses: actions/cache@v3
+      with:
+        path: ~/.pip
+        key: ${{ runner.OS }}-pip-cache-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.OS }}-pip-cache-
+
+      - name: Install dependencies
+        if: steps.cache-pipenv.outputs.cache-hit != 'true'
+        run: |
+          pipenv install --deploy --dev
 
     - name: Run the tests
       run: |

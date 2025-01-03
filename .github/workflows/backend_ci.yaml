@@ -51,6 +51,7 @@ steps:
       uses: actions/setup-python@v5
       with:
         python-version: ${{ env.PYTHON_VER }}
+        cache: 'pip' # caching pip dependencies
     
     - name: Install pipenv
       run:  pip install pipenv

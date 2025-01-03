@@ -84,7 +84,8 @@ jobs:
         node-version: ${{ env.NODE_VER }}
 
     - name:  Build Docker Image
-      run:  docker build --buiold-arg=$REACT_APP_MOVIE_API_URL:5000 --tag=mp-frontend:latest .
+      run:  |
+        docker build --build-arg=$REACT_APP_MOVIE_API_URL:5000 --tag=mp-frontend:latest .
 
    # - name: Cache NPM dependencies
     #  uses: actions/cache@v3

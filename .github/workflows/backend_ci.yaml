@@ -42,7 +42,7 @@ jobs:
       run: pipenv install --dev
 
     - name: Run the linter.
-      run: FAIL_LINT=true pipenv run lint
+      run: pipenv run lint-fail
 
   
   test:

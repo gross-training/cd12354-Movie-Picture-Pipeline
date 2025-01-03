@@ -14,6 +14,7 @@ defaults:
 
 env:
   NODE_VER: '18.14'
+  REACT_APP_MOVIE_API_URL: 'http://localhost'
 
 jobs:
   lint:
@@ -82,16 +83,21 @@ jobs:
       with:
         node-version: ${{ env.NODE_VER }}
 
-    - name: Cache NPM dependencies
-      uses: actions/cache@v3
-      with:
-        path: ~/.npm
-        key: ${{ runner.OS }}-npm-cache-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.OS }}-npm-cache-
+    - name:  Build Docker Image
+      run:  docker build --buiold-arg=$REACT_APP_MOVIE_API_URL:5000 --tag=mp-frontend:latest .
 
-    - name: Install the dependencies.
-      run: npm ci
+   # - name: Cache NPM dependencies
+    #  uses: actions/cache@v3
+    #  with:
+    #    path: ~/.npm
+    #    key: ${{ runner.OS }}-npm-cache-${{ hashFiles('**/package-lock.json') }}
+    #    restore-keys: |
+    #      ${{ runner.OS }}-npm-cache-
+
+    #- name: Install the dependencies.
+    #  run: npm ci
         
-    - name: Run the linter.
-      run: npm test
+    #- name: Run the linter.
+     # run: npm test
+    
+

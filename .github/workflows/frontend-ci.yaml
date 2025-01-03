@@ -40,7 +40,7 @@ jobs:
       run: npm ci
 
     - name: Run the linter.
-      run: npm run lint
+      run: FAIL_LINT=true npm run lint
 
   
   test:
@@ -67,7 +67,7 @@ jobs:
       run: npm ci
 
     - name: Run the tests
-      run: FAIL_TEST=true npm test
+      run:  npm test
   
   build:
     needs: [test, lint]

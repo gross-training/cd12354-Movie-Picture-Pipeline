@@ -14,7 +14,7 @@ defaults:
 
 env:
   NODE_VER: '18.14'
-  REACT_APP_MOVIE_API_URL: 'http://localhost'
+  REACT_APP_MOVIE_API_URL: 'http://localhost:5000'
 
 jobs:
   lint:
@@ -84,7 +84,7 @@ jobs:
         node-version: ${{ env.NODE_VER }}
 
     - name:  Build Docker Image
-      run:  docker build --build-arg=$REACT_APP_MOVIE_API_URL:5000 --tag=mp-frontend:latest 
+      run:  docker build --build-arg=$REACT_APP_MOVIE_API_URL --tag=mp-frontend:latest 
 
     - name: Check image is created
       run: docker images|grep mp-frontend

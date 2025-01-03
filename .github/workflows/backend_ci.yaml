@@ -22,7 +22,6 @@ jobs:
     steps:
     - name: Check out the code from the repository. 
       uses: actions/checkout@v3
-steps:
 
     - name: Set up a python environment using the specified version 
       uses: actions/setup-python@v5

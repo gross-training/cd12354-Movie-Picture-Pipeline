@@ -1,0 +1,107 @@
+name: Frontend Continuous Deployment
+
+on:
+  push:
+    branches:
+      - main
+    paths: './starter/frontend/**'
+
+  workflow_dispatch:
+
+defaults:
+  run:
+    working-directory: ./starter/frontend
+
+env:
+  NODE_VER: '18.14'
+  REACT_APP_MOVIE_API_URL: 'http://localhost:5000'
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out the code from the repository. 
+      uses: actions/checkout@v3
+
+    - name: Set up a Node.js environment using the specified node version 
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ env.NODE_VER }}
+
+    - name: Cache NPM dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.npm
+        key: ${{ runner.OS }}-npm-cache-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.OS }}-npm-cache-
+
+    - name: Install the dependencies.
+      run: npm ci
+
+    - name: Run the linter.
+      run: npm run lint
+
+  
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Check out the code from the repository. 
+      uses: actions/checkout@v4
+
+    - name: Set up a Node.js environment using the specified node version
+      uses: actions/setup-node@v3
+      with:
+         node-version: ${{ env.NODE_VER }}
+
+    - name: Cache NPM dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.npm
+        key: ${{ runner.OS }}-npm-cache-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.OS }}-npm-cache-
+
+    - name: Install the dependencies.
+      run: npm ci
+
+    - name: Run the tests
+      run:  npm test
+  
+  build:
+    needs: [test, lint]
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out the code from the repository. 
+      uses: actions/checkout@v4
+
+    - name: Set up a Node.js environment using the specified node version
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ env.NODE_VER }}
+
+    - name:  Build Docker Image
+      run:  docker build --build-arg=REACT_APP_MOVIE_API_URL=$REACT_APP_MOVIE_API_URL --tag=mp-frontend:latest .
+
+    - name: Check image is created
+      run: docker images|grep mp-frontend
+
+    - name: Run image
+      run:  docker run --name mp-frontend -p 3000:3000 -d mp-frontend
+
+    - name: Cache NPM dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.npm
+        key: ${{ runner.OS }}-npm-cache-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.OS }}-npm-cache-
+
+    - name: Install the dependencies.
+      run: npm ci
+
+    - name: Run the tests
+      run:  npm test

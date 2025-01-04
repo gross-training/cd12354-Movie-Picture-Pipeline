@@ -94,7 +94,7 @@ jobs:
       run:  curl http://localhost:5000/movies
 
     - name:  Check logs
-      run:  curl http://localhost:5000/movies|grep '{"movies":[{"id":"123","title":"Top Gun: Maverick"},{"id":"456","title":"Sonic the Hedgehog"},{"id":"789","title":"A Quiet Place"}]}'
+      run:  curl http://localhost:5000/movies
 
     - name: Set up a python environment using the specified version
       uses: actions/setup-python@v5

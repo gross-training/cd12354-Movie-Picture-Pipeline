@@ -31,16 +31,17 @@ jobs:
     - name: Install pipenv
       run: pip install pipenv
        
-    - id: cache-pipenv
+    - name: Cache Pipenv
       uses: actions/cache@v3
       with:
-        path: ~/.pip
+        path: |
+          ~/.local/share/virtualenvs
+          ~/.pip
         key: ${{ runner.os }}-pip-${{ hashFiles('**/Pipfile.lock') }}
         restore-keys: |
           ${{ runner.os }}-pip-
 
     - name: Install dependencies
-      if: steps.cache-pipenv.outputs.cache-hit != 'true'
       run: pipenv install --dev
 
     - name: Run the linter.
@@ -62,16 +63,17 @@ jobs:
     - name: Install pipenv
       run:  pip install pipenv
 
-    - id: cache-pipenv
+    - name: Cache Pipenv
       uses: actions/cache@v3
       with:
-        path: ~/.pip
+        path: |
+          ~/.local/share/virtualenvs
+          ~/.pip
         key: ${{ runner.os }}-pip-${{ hashFiles('**/Pipfile.lock') }}
         restore-keys: |
           ${{ runner.os }}-pip-
 
     - name: Install dependencies
-      if: steps.cache-pipenv.outputs.cache-hit != 'true'
       run: pipenv install --dev
 
     - name: Run the tests
@@ -108,16 +110,17 @@ jobs:
     - name: Install pipenv
       run: pip install pipenv
 
-    - id: cache-pipenv
+    - name: Cache Pipenv
       uses: actions/cache@v3
       with:
-        path: ~/.pip
+        path: |
+          ~/.local/share/virtualenvs
+          ~/.pip
         key: ${{ runner.os }}-pip-${{ hashFiles('**/Pipfile.lock') }}
         restore-keys: |
           ${{ runner.os }}-pip-
 
     - name: Install dependencies
-      if: steps.cache-pipenv.outputs.cache-hit != 'true'
       run: pipenv install --dev
 
     - name: Run the tests

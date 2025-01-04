@@ -93,8 +93,8 @@ jobs:
     - name:  Check the running application
       run:  curl http://localhost:5000/movies
 
-    - name:  Check logs
-      run:  curl http://localhost:5000/movies
+    - name:  Review Logs
+      run: docker logs -f mp-backend
 
     - name: Set up a python environment using the specified version
       uses: actions/setup-python@v5

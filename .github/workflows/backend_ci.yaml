@@ -81,6 +81,21 @@ jobs:
     - name: Check out the code from the repository. 
       uses: actions/checkout@v4
 
+    - name:  Build Docker Image --tag mp-backend:latest .
+      run:  docker build --tag mp-backend:latest .
+      
+    - name: Check image is created
+      run: docker images|grep mp-backend
+  
+    - name: Run the image
+      run:  docker run -p 5000:5000 --name mp-backend -d mp-backend
+ 
+    - name:  Check the running application
+      run:  curl http://localhost:5000/movies
+
+    - name:  Check logs
+      run:  curl http://localhost:5000/movies|grep '{"movies":[{"id":"123","title":"Top Gun: Maverick"},{"id":"456","title":"Sonic the Hedgehog"},{"id":"789","title":"A Quiet Place"}]}'
+
     - name: Set up a python environment using the specified version
       uses: actions/setup-python@v5
       with:

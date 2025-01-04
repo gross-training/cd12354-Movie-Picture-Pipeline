@@ -89,6 +89,12 @@ jobs:
     - name: Check image is created
       run: docker images|grep mp-frontend
 
+    - name: Run image
+      run:  docker run --name mp-frontend -p 3000:3000 -d mp-frontend
+
+    - name: Check URL
+      run: curl localhost:3000
+
     - name: Cache NPM dependencies
       uses: actions/cache@v3
       with:

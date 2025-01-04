@@ -2,8 +2,8 @@ name: Frontend Continuous Deployment
 
 on:
   push:
-    branches:
-      - main
+    branches: main
+    paths: './starter/frontend/**'
 
   workflow_dispatch:
 

@@ -94,7 +94,7 @@ jobs:
       run:  curl http://localhost:5000/movies
 
     - name:  Review Logs
-      run: docker logs -f mp-backend
+      run: docker logs mp-backend
 
     - name: Set up a python environment using the specified version
       uses: actions/setup-python@v5

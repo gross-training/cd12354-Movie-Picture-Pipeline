@@ -43,7 +43,7 @@ jobs:
       run: npm run lint
 
     - name: Run the tests
-      run: FAIL_TEST=true npm test  
+      run: npm test  
 
     - name:  Build Docker Image
       run:  docker build --build-arg=REACT_APP_MOVIE_API_URL=$REACT_APP_MOVIE_API_URL --tag=mp-frontend:latest .

@@ -74,7 +74,7 @@ jobs:
       run: pipenv install --dev
 
     - name: Run the tests
-      run: pipenv run test
+      run: pipenv run test FAIL_TEST=true
   
   build:
     needs: [test, lint]

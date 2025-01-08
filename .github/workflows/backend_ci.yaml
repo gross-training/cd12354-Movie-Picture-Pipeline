@@ -43,7 +43,7 @@ jobs:
       run: pipenv install --dev
 
     - name: Run the linter.
-      run: pipenv run lint
+      run: FAIL_LINT=true pipenv run lint
 
   
   test:
@@ -74,7 +74,7 @@ jobs:
       run: pipenv install --dev
 
     - name: Run the tests
-      run: pipenv run test FAIL_TEST=true
+      run: pipenv run test
   
   build:
     needs: [test, lint]

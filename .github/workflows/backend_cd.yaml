@@ -48,8 +48,7 @@ jobs:
 
     - name: Run the tests
       run:  pipenv run test
-  
-     
+      
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v2
       with:
@@ -60,6 +59,13 @@ jobs:
     - name: Login to Amazon ECR
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
+
+    - name: Build and Push Image to ECR
+      run :   |
+         docker build -t mp-backend:latest .
+         docker tag mp-backend:latest 313910775882.dkr.ecr.us-east-1.amazonaws.com/backend:${GITHUB_SHA}
+         docker push 313910775882.dkr.ecr.us-east-1.amazonaws.com/backend:${GITHUB_SHA}
+         
   
  
 

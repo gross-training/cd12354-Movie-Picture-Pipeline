@@ -61,16 +61,17 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
 
-    - name: Build and Push Image to ECR
-      run :   |
-         docker build -t mp-backend:latest .
-         docker tag mp-backend:latest ${{ secrets.ECR_REG_NAME }}/backend:${GITHUB_SHA}
-         docker push ${{ secrets.ECR_REG_NAME }}/backend:${GITHUB_SHA}
+  #  - name: Build and Push Image to ECR
+ #     run :   |
+  #       docker build -t mp-backend:latest .
+  #       docker tag mp-backend:latest ${{ secrets.ECR_REG_NAME }}/backend:${GITHUB_SHA}
+  #       docker push ${{ secrets.ECR_REG_NAME }}/backend:${GITHUB_SHA}
 
     - name: Deploy to K8s
       run :   |
           cd k8s
-          kustomize edit set image backend=${{ secrets.ECR_REG_NAME }}/backend:${GITHUB_SHA}
+       #   kustomize edit set image backend=${{ secrets.ECR_REG_NAME }}/backend:${GITHUB_SHA}
+          kustomize edit set image backend=${{ secrets.ECR_REG_NAME }}/backend:d5da998fd5db92266c8efea7238ab5156420f8a1
           kubectl apply -f .
           kubectl get svcs
           kubectl get pods

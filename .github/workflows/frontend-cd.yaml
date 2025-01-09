@@ -62,4 +62,12 @@ jobs:
          docker tag mp-frontend:latest 313910775882.dkr.ecr.us-east-1.amazonaws.com/frontend:${GITHUB_SHA}
          docker push 313910775882.dkr.ecr.us-east-1.amazonaws.com/frontend:${GITHUB_SHA}
 
+             - name: Deploy to K8s
+    - run :   |
+          cd k8s
+          kustomize edit set image frontend=${{ secrets.ECR_REG_NAME }}/frontend:${GITHUB_SHA}
+          kubectl apply -f .
+          kubectl get svcs
+          kubectl get pods
+
     

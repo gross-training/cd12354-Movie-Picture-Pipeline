@@ -58,8 +58,8 @@ jobs:
 
     - name: Build and Push Image to ECR
       run :   |
-         docker build -t mp-backend:latest .
-         docker tag mp-backend:latest 313910775882.dkr.ecr.us-east-1.amazonaws.com/backend:${GITHUB_SHA}
+         docker build --build-arg=REACT_APP_MOVIE_API_URL=$REACT_APP_MOVIE_API_URL --t mp-frontend:latest .
+         docker tag :latest 313910775882.dkr.ecr.us-east-1.amazonaws.com/backend:${GITHUB_SHA}
          docker push 313910775882.dkr.ecr.us-east-1.amazonaws.com/backend:${GITHUB_SHA}
 
     

@@ -69,6 +69,7 @@ jobs:
 
     - name: Deploy to K8s
       run :   |
+          cd k8s
           kustomize edit set image frontend=${{ secrets.ECR_REG_NAME }}/backend:${GITHUB_SHA}
           kubectl apply -f .
           kubectl get svcs

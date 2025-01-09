@@ -69,7 +69,7 @@ jobs:
     - name: Deploy to K8s
       run :   |
           cd k8s
-          ./kustomize edit set image frontend=
+          ./kustomize edit set image backend=313910775882.dkr.ecr.us-east-1.amazonaws.com/backend:${GITHUB_SHA}
           
      
          

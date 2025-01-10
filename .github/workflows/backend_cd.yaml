@@ -76,8 +76,7 @@ jobs:
       run :   |
           cd k8s
           kustomize edit set image frontend=${{ secrets.ECR_REG_NAME }}/backend:${GITHUB_SHA}
-          kustomize build
-          kubectl apply -f .
+          kustomize build|kubectl apply -f .
           kubectl get svcs
           kubectl get pods
 

@@ -72,7 +72,7 @@ jobs:
       run :   |
           cd k8s
           kustomize edit set image frontend=${{ secrets.ECR_REG_NAME }}/frontend:${GITHUB_SHA}
-          kustomize build|kubectl apply -f .
+          kustomize build|kubectl apply -k .
     
     - name: Gather K8 info
       run :   |

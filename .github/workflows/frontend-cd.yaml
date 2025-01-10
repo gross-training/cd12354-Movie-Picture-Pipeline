@@ -73,9 +73,10 @@ jobs:
           kustomize edit set image frontend=${{ secrets.ECR_REG_NAME }}/frontend:${GITHUB_SHA}
           kubectl apply -f .
     
-    - name: Gather K8 status
+    - name: Gather K8 info
       run :   |
           kubectl get pods -A
           kubectl get svc -A
+          kubectl describe pods -A
 
     

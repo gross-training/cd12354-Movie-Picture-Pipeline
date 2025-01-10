@@ -1,0 +1,112 @@
+terraform root$ kubectl describe pod backend-7978d9bf7f-dwd6l
+Name:         backend-7978d9bf7f-dwd6l
+Namespace:    default
+Priority:     0
+Node:         ip-10-0-1-250.ec2.internal/10.0.1.250
+Start Time:   Fri, 10 Jan 2025 19:24:38 +0000
+Labels:       app=backend
+              pod-template-hash=7978d9bf7f
+Annotations:  <none>
+Status:       Running
+IP:           10.0.1.68
+IPs:
+  IP:           10.0.1.68
+Controlled By:  ReplicaSet/backend-7978d9bf7f
+Containers:
+  backend:
+    Container ID:   containerd://28ccd3b9ce64df1d55ae9ddb539edd0209088b9c5b4c7d2e25a46d568fa92809
+    Image:          313910775882.dkr.ecr.us-east-1.amazonaws.com/backend:329ac5753a01da805dac1133871810e8ec4cdd7d
+    Image ID:       313910775882.dkr.ecr.us-east-1.amazonaws.com/backend@sha256:1505962ea525ab7eeb51e828c809c663a18271811e6fc177a4f4393d4a183eeb
+    Port:           5000/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Fri, 10 Jan 2025 19:24:56 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-kxh59 (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  kube-api-access-kxh59:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason            Age   From               Message
+  ----     ------            ----  ----               -------
+  Warning  FailedScheduling  17m   default-scheduler  0/1 nodes are available: 1 node(s) were unschedulable. preemption: 0/1 nodes are available: 1 Preemption is not helpful for scheduling.
+  Normal   Scheduled         16m   default-scheduler  Successfully assigned default/backend-7978d9bf7f-dwd6l to ip-10-0-1-250.ec2.internal
+  Normal   Pulling           16m   kubelet            Pulling image "313910775882.dkr.ecr.us-east-1.amazonaws.com/backend:329ac5753a01da805dac1133871810e8ec4cdd7d"
+  Normal   Pulled            16m   kubelet            Successfully pulled image "313910775882.dkr.ecr.us-east-1.amazonaws.com/backend:329ac5753a01da805dac1133871810e8ec4cdd7d" in 16.451620736s (16.451638005s including waiting)
+  Normal   Created           16m   kubelet            Created container backend
+  Normal   Started           16m   kubelet            Started container backend
+
+
+
+=======================================================================================================================================================================================================================================
+
+terraform root$ kubectl describe pod frontend-7978f7477f-sdzq6
+Name:         frontend-7978f7477f-sdzq6
+Namespace:    default
+Priority:     0
+Node:         ip-10-0-1-250.ec2.internal/10.0.1.250
+Start Time:   Fri, 10 Jan 2025 19:31:46 +0000
+Labels:       app=frontend
+              pod-template-hash=7978f7477f
+Annotations:  <none>
+Status:       Running
+IP:           10.0.1.91
+IPs:
+  IP:           10.0.1.91
+Controlled By:  ReplicaSet/frontend-7978f7477f
+Containers:
+  frontend:
+    Container ID:   containerd://fb7beac9d890b2af67a1c88c3f56c8f6f2673e2523aaf51596b5bc4e51964756
+    Image:          313910775882.dkr.ecr.us-east-1.amazonaws.com/frontend:ff1f12509d6cd64915f7fbcc22d987ddf020c68f
+    Image ID:       313910775882.dkr.ecr.us-east-1.amazonaws.com/frontend@sha256:fc43fc059876268b6b460f687595c3198834cb710f19eab91cbb65ff555dd257
+    Port:           3000/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Fri, 10 Jan 2025 19:32:10 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-z28ss (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  kube-api-access-z28ss:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  11m   default-scheduler  Successfully assigned default/frontend-7978f7477f-sdzq6 to ip-10-0-1-250.ec2.internal
+  Normal  Pulling    11m   kubelet            Pulling image "313910775882.dkr.ecr.us-east-1.amazonaws.com/frontend:ff1f12509d6cd64915f7fbcc22d987ddf020c68f"
+  Normal  Pulled     11m   kubelet            Successfully pulled image "313910775882.dkr.ecr.us-east-1.amazonaws.com/frontend:ff1f12509d6cd64915f7fbcc22d987ddf020c68f" in 23.226510413s (23.226520857s including waiting)
+  Normal  Created    11m   kubelet            Created container frontend
+  Normal  Started    11m   kubelet            Started container frontend

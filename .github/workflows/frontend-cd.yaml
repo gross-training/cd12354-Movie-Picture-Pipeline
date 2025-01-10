@@ -13,7 +13,7 @@ defaults:
 
 env:
   NODE_VER: '18.14'
-  REACT_APP_MOVIE_API_URL: 'http://localhost:5000'
+  REACT_APP_MOVIE_API_URL: 'a64374c4f0dce444c92eddc74b597e5f-1444490479.us-east-1.elb.amazonaws.com'
   AWS_REGION: us-east-1
   CLUSTER_NAME: cluster
 

@@ -3,7 +3,7 @@ name: Backend Continuous Integration
 on:
   pull_request:
     branches: main
-    paths: 'starter/frontend/**'
+    paths: 'starter/backend/**'
 
   workflow_dispatch:
 

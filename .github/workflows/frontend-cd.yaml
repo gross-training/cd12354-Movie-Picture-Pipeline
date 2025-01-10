@@ -15,6 +15,7 @@ env:
   NODE_VER: '18.14'
   REACT_APP_MOVIE_API_URL: 'http://localhost:5000'
   AWS-REGION: us-east-1
+  CLUSTER_NAME: cluster
 
 jobs:
   test-build-deploy:
@@ -65,7 +66,7 @@ jobs:
          docker push 313910775882.dkr.ecr.us-east-1.amazonaws.com/frontend:${GITHUB_SHA}
 
     - name: Update kubeconfig
-      run: aws eks update-kubeconfig --name <cluster-name> --region $AWS-REGION
+      run: aws eks update-kubeconfig --name $CLUSTER_NAME --region $AWS-REGION
       
     - name: Deploy to K8s
       run :   |

@@ -14,6 +14,7 @@ defaults:
 env:
   PYTHON_VER: '3.10.6'
   AWS-REGION: us-east-1
+  CLUSTER_NAME: cluster
 
 jobs:
   test-build-deploy:

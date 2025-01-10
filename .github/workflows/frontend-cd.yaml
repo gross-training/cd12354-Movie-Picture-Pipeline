@@ -13,7 +13,7 @@ defaults:
 
 env:
   NODE_VER: '18.14'
-  REACT_APP_MOVIE_API_URL: 'ab5fdb5fb076e4a37957322924bfdf62-651037108.us-east-1.elb.amazonaws.com'
+  REACT_APP_MOVIE_API_URL: 'http://aaaab6406209240f5aaaf27a39766501-1380764422.us-east-1.elb.amazonaws.com'
   CLUSTER_NAME: cluster
 
 jobs:

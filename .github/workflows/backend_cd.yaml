@@ -13,6 +13,7 @@ defaults:
 
 env:
   PYTHON_VER: '3.10.6'
+  AWS-REGION: us-east-1
 
 jobs:
   test-build-deploy:
@@ -54,7 +55,7 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEYID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-east-1
+        aws-region: $AWS-REGION
         mask-password: true
       
     - name: Login to Amazon ECR
@@ -67,11 +68,12 @@ jobs:
          docker tag mp-backend:latest ${{ secrets.ECR_REG_NAME }}/backend:${GITHUB_SHA}
          docker push ${{ secrets.ECR_REG_NAME }}/backend:${GITHUB_SHA}
 
+    - name: Update kubeconfig
+      run: aws eks update-kubeconfig --name <cluster-name> --$AWS-REGION
 
     - name: Deploy to K8s
       run :   |
           cd k8s
-          aws eks update-kubeconfig --name cluster --region us-east-1
           kustomize edit set image frontend=${{ secrets.ECR_REG_NAME }}/backend:${GITHUB_SHA}
           kubectl apply -f .
           kubectl get svcs

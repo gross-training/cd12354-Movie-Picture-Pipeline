@@ -13,7 +13,7 @@ defaults:
 
 env:
   PYTHON_VER: '3.10.6'
-  AWS-REGION: us-east-1
+  AWS_REGION: us-east-1
   CLUSTER_NAME: cluster
 
 jobs:
@@ -56,7 +56,7 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEYID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: $AWS-REGION
+        aws-region: $AWS_REGION
         mask-password: true
       
     - name: Login to Amazon ECR

@@ -70,7 +70,6 @@ jobs:
     - name: Update kubeconfig
       run:   |
           echo "CLUSTER_NAME=$CLUSTER_NAME" >> $GITHUB_ENV
-          echo "Failures=$failures" >> $GITHUB_ENV
           aws eks update-kubeconfig --name ${{ env.CLUSTER_NAME }} --region ${{ secrets.AWS_REGION }}
 
     - name: Deploy to K8s

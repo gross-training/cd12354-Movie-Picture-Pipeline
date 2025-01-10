@@ -78,6 +78,12 @@ jobs:
           kubectl apply -f .
           kubectl get svcs
           kubectl get pods
+
+    - name: Gather K8 status
+      run :   |
+          kubectl get pods -A
+          kubectl get svc -A
+          
           
      
          
